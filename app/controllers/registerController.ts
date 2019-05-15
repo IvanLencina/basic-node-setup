@@ -15,7 +15,7 @@ export class RegisterController {
             src="https://giphy.com/embed/15aGGXfSlat2dP6ohs" 
             width="480" height="272" frameBorder="0" class="giphy-embed" allowFullScreen>
         </iframe>
-        <p>Method not allowed. You already have your own form.</p>
+        <p>Method not allowed.</p>
     `);
     }
 
