@@ -38,6 +38,6 @@ export class RegisterController {
       return response.status(400).send('password field is required.')
     }
 
-    response.status(201).send(request.body);
+    response.status(201).send('Perfect!');
   };
 }
