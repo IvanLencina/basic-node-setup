@@ -1,6 +1,8 @@
 import * as express from 'express';
 import {injectable} from "inversify";
 
+const MAX_STRING_LEN = 200;
+
 @injectable()
 export class RegisterController {
 
@@ -23,7 +25,9 @@ export class RegisterController {
   };
 
   public create(request: express.Request, response: express.Response) {
-    const { name, email, password } = request.body;
+    const name = String(request.body.name);
+    const email = String(request.body.email);
+    const password = String(request.body.password);
 
     // Clearly, I'm not going to set up a validator for this example
     if (!name) {
@@ -38,6 +42,17 @@ export class RegisterController {
       return response.status(400).send('password field is required.')
     }
 
+    if (name.length >= MAX_STRING_LEN) {
+      return response.status(422).send('name field is too long.');
+    }
+    else if (email.length >= MAX_STRING_LEN) {
+      return response.status(422).send('email field is too long.');
+    }
+    else if (password.length >= MAX_STRING_LEN) {
+      return response.status(422).send('password field is too long.');
+    }
+    
+    console.log(`New Register:\nName: ${name}\nEmail: ${email}\nPassword: ${password}\n`);
     response.status(201).send('Perfect!');
   };
 }
